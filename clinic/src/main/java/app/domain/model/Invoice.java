@@ -1,6 +1,6 @@
 package app.domain.model;
 
-
+import java.sql.Date;
 
 public class Invoice {
 	private long id;
@@ -9,9 +9,9 @@ public class Invoice {
     private long document;
     private User doctorName;
     private String insuranceCompany;
-    private String policyNumber;
+    private int policyNumber;
     private String policyValidity;
-    private String policyEndingDate;
+    private Date policyEndingDate;
     private boolean medicine;
     private ClinicalOrder order;
     private String productName;
@@ -52,25 +52,27 @@ public class Invoice {
     public void setInsuranceCompany(String insuranceCompany) {
         this.insuranceCompany = insuranceCompany;
     }
-    public String getPolicyNumber() {
-        return policyNumber;
-    }
-    public void setPolicyNumber(String policyNumber) {
-        this.policyNumber = policyNumber;
-    }
-    public String getPolicyValidity() {
+    
+    public int getPolicyNumber() {
+		return policyNumber;
+	}
+	public void setPolicyNumber(int policyNumber) {
+		this.policyNumber = policyNumber;
+	}
+	public String getPolicyValidity() {
         return policyValidity;
     }
     public void setPolicyValidity(String policyValidity) {
         this.policyValidity = policyValidity;
     }
-    public String getPolicyEndingDate() {
-        return policyEndingDate;
-    }
-    public void setPolicyEndingDate(String policyEndingDate) {
-        this.policyEndingDate = policyEndingDate;
-    }
-    public boolean isMedicine() {
+    
+    public Date getPolicyEndingDate() {
+		return policyEndingDate;
+	}
+	public void setPolicyEndingDate(Date policyEndingDate) {
+		this.policyEndingDate = policyEndingDate;
+	}
+	public boolean isMedicine() {
         return medicine;
     }
     public void setMedicine(boolean medicine) {

@@ -1,5 +1,6 @@
 package app.application.usecases;
 
+import app.domain.model.Appointment;
 import app.domain.model.Invoice;
 import app.domain.model.Patient;
 import app.domain.services.CreateInvoice;
@@ -10,7 +11,7 @@ import app.domain.services.UpdatePatient;
 public class AdminUseCase {
 	
 	 private CreatePatient createPatient;
-	    private CreateMedicalAppointment createMedicalAppointmen;
+	    private CreateMedicalAppointment createMedicalAppointment;
 	    private CreateInvoice createInvoice;
 	    private UpdatePatient updatePatient;
 
@@ -18,8 +19,8 @@ public class AdminUseCase {
 	        createPatient.createPatient(patient);
 	    }
 
-	    public void createMedicalAppointment(Patient patient) throws Exception {
-	        createMedicalAppointmen.createMedicalAppointment(patient);
+	    public void createMedicalAppointment(Appointment appointment) throws Exception {
+	    	createMedicalAppointment.createMedicalAppointment(appointment);
 	    }
 
 	    public void createInvoice(Invoice invoice) throws Exception {

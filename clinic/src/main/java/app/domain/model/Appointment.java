@@ -1,10 +1,14 @@
 package app.domain.model;
 
+import java.sql.Date;
+
 public class Appointment {
 	private long id;
 	private Patient patient;
-	private User doctor;
-	private String date;
+	private User doctorName;
+	private Date date;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -17,18 +21,20 @@ public class Appointment {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-	public User getDoctor() {
-		return doctor;
+	
+	public User getDoctorName() {
+		return doctorName;
 	}
-	public void setDoctor(User doctor) {
-		this.doctor = doctor;
+	public void setDoctorName(User doctorName) {
+		this.doctorName = doctorName;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	
 
 }

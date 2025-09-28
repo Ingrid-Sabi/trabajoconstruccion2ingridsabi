@@ -11,7 +11,7 @@ public class Person {
 	private String name;
     private long document;
     private String email;
-    private String phoneNumber;
+    private long phoneNumber;
     private int age;
     private String address;
     private Role role;
@@ -34,13 +34,14 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-    public int getAge() {
+    
+    public long getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public int getAge() {
         return age;
     }
     public void setAge(int age) {
