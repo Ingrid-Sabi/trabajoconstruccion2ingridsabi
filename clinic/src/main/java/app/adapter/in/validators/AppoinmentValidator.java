@@ -7,19 +7,15 @@ import org.springframework.stereotype.Component;
 public class AppoinmentValidator  extends SimpleValidator {
 	
 	
-	/*public long orderIdValidator(String value) throws Exception {
-		return longValidator("id de la cita", value);
-	}*/
-	public String namePatientValidator(String value) throws Exception {
-		return stringValidator("Nombre del paciente", value);
-	}
-	public String nameValidator(String value) throws Exception {
-		return stringValidator("Nombre del Doctor", value);
-	}
-	
-	
-	/*public LocalDate  dateValidator(String value) throws Exception {
-		return dateValidator("edad del Paciente", value);
-		FECHAAA
-	}*/
+	 public String dateValidator(String value) throws Exception{
+	        return stringValidator("Fecha de la cita", value);
+	    }
+
+	    public String timeValidator(String value) throws Exception{
+	        return stringValidator("Hora de la cita", value);
+	    }
+
+	    public String reasonValidator(String value) throws Exception{
+	        return stringValidator("Razon de la cita", value);
+	    }
 }

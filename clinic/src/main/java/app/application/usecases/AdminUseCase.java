@@ -4,14 +4,14 @@ import app.domain.model.Appointment;
 import app.domain.model.Invoice;
 import app.domain.model.Patient;
 import app.domain.services.CreateInvoice;
-import app.domain.services.CreateMedicalAppointment;
+import app.domain.services.CreateAppointment;
 import app.domain.services.CreatePatient;
 import app.domain.services.UpdatePatient;
 
 public class AdminUseCase {
 	
 	 private CreatePatient createPatient;
-	    private CreateMedicalAppointment createMedicalAppointment;
+	    private CreateAppointment createAppointment;
 	    private CreateInvoice createInvoice;
 	    private UpdatePatient updatePatient;
 
@@ -19,8 +19,8 @@ public class AdminUseCase {
 	        createPatient.createPatient(patient);
 	    }
 
-	    public void createMedicalAppointment(Appointment appointment) throws Exception {
-	    	createMedicalAppointment.createMedicalAppointment(appointment);
+	    public void createAppointment(Appointment medicalAppointment) throws Exception {
+	    	createAppointment.createMedicalAppointment(medicalAppointment);
 	    }
 
 	    public void createInvoice(Invoice invoice) throws Exception {

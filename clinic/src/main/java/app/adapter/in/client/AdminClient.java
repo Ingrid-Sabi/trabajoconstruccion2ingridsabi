@@ -16,7 +16,8 @@ import app.domain.model.User;
 
 public class AdminClient {
 	
-	private static final String MENU="Ingrese una de las Opciones \n 1. Crear Paciente"
+	private static final String MENU="Ingrese una de las Opciones "
+			+ "\n 1. Crear Paciente"
 			+ "\n 2. Actualizar Paciente"
 			+ "\n 3.Crear Cita"
 			+ "\n 4. Crear Factura"

@@ -14,7 +14,8 @@ import app.domain.model.User;
 @Controller
 public class HumanResourcesClient {
 	
-	private static final String MENU="Ingrese una de las Opciones \n 1. Crear Doctor"
+	private static final String MENU="Ingrese una de las Opciones "
+			+ "\n 1. Crear Doctor"
 			+ "\n 2. Crear Enfermera"
 			+ "\n 3.Crear Administrador"
 			+ "\n 4. Actualizar Doctor"
