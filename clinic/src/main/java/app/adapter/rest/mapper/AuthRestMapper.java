@@ -7,6 +7,7 @@ import app.adapter.rest.response.TokenResponseDto;
 import app.domain.model.auth.AuthCredentials;
 import app.domain.model.auth.TokenResponse;
 
+
 @Component
 public class AuthRestMapper {
     public AuthCredentials toDomain(AuthRequest req) {

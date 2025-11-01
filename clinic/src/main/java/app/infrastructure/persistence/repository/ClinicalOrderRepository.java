@@ -6,12 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import app.infrastructure.persistence.entities.ClinicalOrderEntity;
-import app.infrastructure.persistence.entities.PetEntity;
+import app.infrastructure.persistence.entities.PatientEntity;
+
 
 @Repository
 public interface ClinicalOrderRepository extends JpaRepository<ClinicalOrderEntity, Long> {
 	public ClinicalOrderEntity findById(long id);
 
-	public List<ClinicalOrderEntity> findByPet(PetEntity entity);
-
-}}
+	public List<ClinicalOrderEntity> findByPatient(PatientEntity entity);
+	
+}

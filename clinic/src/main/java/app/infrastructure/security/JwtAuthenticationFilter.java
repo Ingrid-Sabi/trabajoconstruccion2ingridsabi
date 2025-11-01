@@ -1,6 +1,6 @@
 package app.infrastructure.security;
 
-import app.domain.ports.AuthenticationPort;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +10,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import app.domain.ports.AuthenticationPort;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

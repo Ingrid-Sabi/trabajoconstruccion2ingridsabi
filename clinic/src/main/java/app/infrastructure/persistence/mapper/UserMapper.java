@@ -2,7 +2,7 @@ package app.infrastructure.persistence.mapper;
 
 
 import app.domain.model.User;
-import app.domain.model.emuns.Role;
+import app.domain.model.enums.Role;
 import app.infrastructure.persistence.entities.UserEntity;
 
 public class UserMapper {

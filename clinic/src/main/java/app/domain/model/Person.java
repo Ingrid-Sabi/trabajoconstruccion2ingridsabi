@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import java.sql.Date;
+
 
 import app.domain.model.enums.Role;
 
