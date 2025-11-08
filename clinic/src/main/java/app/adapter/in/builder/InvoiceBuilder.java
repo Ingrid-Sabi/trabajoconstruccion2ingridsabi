@@ -16,13 +16,12 @@ public class InvoiceBuilder {
 	
 	@Autowired
 	private InvoiceValidator invoiceValidator;
-	@Autowired
-    private Patient patient;
-    
+
 	
 	    public Invoice build(String document, String patientName, String doctorName, String insuranceCompany, String policyNumber, String policyValidity, String policyEndingDate, String medicine, String productName, String order) throws Exception{
 	        Invoice invoice = new Invoice();
 	        User name = new User();
+	        Patient patient = new Patient();
 	        invoice.setDocument(invoiceValidator.documentValidator(document));
 	        patient.setPatientName(invoiceValidator.patientNameValidator(patientName));
 	        name.setName(invoiceValidator.doctorNameValidator(doctorName));

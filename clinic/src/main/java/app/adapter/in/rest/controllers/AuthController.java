@@ -3,6 +3,7 @@ package app.adapter.in.rest.controllers;
 import app.adapter.rest.mapper.AuthRestMapper;
 import app.adapter.rest.request.AuthRequest;
 import app.adapter.rest.response.TokenResponseDto;
+import app.application.usecases.LoginUseCase;
 import app.domain.model.auth.AuthCredentials;
 import app.domain.model.auth.TokenResponse;
 
