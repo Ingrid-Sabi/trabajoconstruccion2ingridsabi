@@ -7,21 +7,23 @@ import app.domain.model.Appointment;
 import app.domain.model.Patient;
 
 import app.domain.ports.AppointmentPort;
-
+import app.domain.ports.PatientPort;
 
 @Service
 public class CreateAppointment {
 	@Autowired
-	  private AppointmentPort medicalAppointmentPort;
+	private AppointmentPort appointmentPort;
 	@Autowired
-	  private Patient patient;
+	private PatientPort patientPort;
 
-	    public void createMedicalAppointment(Appointment medicalAppointment) throws Exception {
-	        if (medicalAppointmentPort.findByDocument(medicalAppointment) == null) {
-	            throw new Exception("El usuario no se encuentra registrado");
-	        }
-	        medicalAppointmentPort.save(patient);
-	    }
-
+	public void createMedicalAppointment(Appointment medicalAppointment) throws Exception {
+		Patient posiblePatient = new Patient();
+		posiblePatient.setDocument(medicalAppointment.getDocument());
+		Patient patient = patientPort.findByDocument(posiblePatient);
+		if (patient == null) {
+			throw new Exception("El usuario no se encuentra registrado");
+		}
+		appointmentPort.save(medicalAppointment);
+	}
 
 }

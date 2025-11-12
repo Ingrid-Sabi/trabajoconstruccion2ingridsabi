@@ -14,6 +14,8 @@ public class Invoice {
     private boolean medicine;
     private ClinicalOrder order;
     private String productName;
+    
+    
 	public long getId() {
 		return id;
 	}

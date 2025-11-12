@@ -11,6 +11,11 @@ public class AppointmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false)
+    private Long document;
+
+    
 
     @Column(nullable = false)
     private String date;
@@ -27,6 +32,14 @@ public class AppointmentEntity {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getDocument() {
+        return document;
+    }
+
+    public void setDocument(Long document) {
+        this.document = document;
     }
 
     public String getDate() {

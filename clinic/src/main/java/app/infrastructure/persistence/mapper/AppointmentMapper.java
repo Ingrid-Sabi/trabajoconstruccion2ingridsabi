@@ -15,6 +15,7 @@ public class AppointmentMapper {
         }
         AppointmentEntity entity = new AppointmentEntity();
         entity.setId(appointment.getId());
+        entity.setDocument(appointment.getDocument());
         entity.setDate(appointment.getDate());
         entity.setTime(appointment.getTime());
         entity.setReason(appointment.getReason());
@@ -28,6 +29,7 @@ public class AppointmentMapper {
         }
         Appointment appointment = new Appointment();
         appointment.setId(entity.getId());
+        appointment.setDocument(entity.getDocument());
         appointment.setDate(entity.getDate());
         appointment.setTime(entity.getTime());
         appointment.setReason(entity.getReason());

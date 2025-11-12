@@ -1,14 +1,20 @@
 package app.application.usecases;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.services.CreateUser;
 import app.domain.services.UpdateUser;
 
+@Component
 public class HumanResourcesUseCase {
 	
-	 private CreateUser createUser;
-	    private UpdateUser updateUser;
+	@Autowired
+	private CreateUser createUser;
+	@Autowired
+	private UpdateUser updateUser;
 	    
 
 	    public void createRrHh(User user) throws Exception {

@@ -1,29 +1,39 @@
 package app.adapter.out.persistence;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.domain.model.User;
 import app.domain.ports.UserPort;
+import app.infrastructure.persistence.entities.UserEntity;
+import app.infrastructure.persistence.mapper.UserMapper;
+import app.infrastructure.persistence.repository.UserRepository;
 
 
 @Service
 public class UserAdapter implements UserPort {
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public User findByDocument(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		UserEntity UserEntity = userRepository.findByDocument((user.getDocument()));
+		return UserMapper.toDomain(UserEntity);
 	}
 
 	@Override
 	public User findByUserName(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		UserEntity UserEntity = userRepository.findByUserName(user.getUserName());
+		return UserMapper.toDomain(UserEntity);
 	}
 
 	@Override
 	public void save(User user) throws Exception {
-		// TODO Auto-generated method stub
+		UserEntity UserEntity = UserMapper.toEntity(user);
+		UserEntity.setId(null);
+		userRepository.save(UserEntity);
+		System.out.println("Usuario guardado correctamente");
 		
 	}
 

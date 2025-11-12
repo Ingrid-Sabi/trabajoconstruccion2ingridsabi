@@ -13,7 +13,7 @@ public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
-	private long id;
+	private Long id;
 
 	@Column(nullable = false, length = 100)
 	private String name;
@@ -54,7 +54,7 @@ public class UserEntity {
 		return document;
 	}
 
-	public void setDocument(long document) {
+	public void setDocument(Long document) {
 		this.document = document;
 	}
 
