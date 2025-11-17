@@ -2,58 +2,37 @@ package app.infrastructure.persistence.mapper;
 
 
 
+import org.springframework.stereotype.Component;
+
 import app.domain.model.ClinicalOrder;
 import app.infrastructure.persistence.entities.ClinicalOrderEntity;
-import app.infrastructure.persistence.entities.PatientEntity;
-import app.infrastructure.persistence.entities.UserEntity;
 
+
+@Component
 public class ClinicalOrderMapper {
 
-    // ===== Dominio → Entidad =====
-    public static ClinicalOrderEntity toEntity(ClinicalOrder order) {
-        if (order == null) {
-            return null;
-        }
+	 public ClinicalOrderEntity toEntity(ClinicalOrder clinicalOrder) {
+	        if (clinicalOrder == null) return null;
+	        ClinicalOrderEntity entity = new ClinicalOrderEntity();
+	        if (clinicalOrder.getOrderId() > 0) {
+	            entity.setId(clinicalOrder.getOrderId());
+	        }
+	        entity.setMedications(clinicalOrder.getMedications());
+	        entity.setProcedure(clinicalOrder.getProcedure());
+	        entity.setDiagnosticAid(clinicalOrder.getDiagnosticAid());
+	        return entity;
+	    }
 
-        ClinicalOrderEntity entity = new ClinicalOrderEntity();
-        entity.setId(order.getId());
-        entity.setDocument(order.getDocument());
-        entity.setMedicine(order.getMedicine());
-        entity.setDoce(order.getDoce());
-        entity.setDate(order.getDate());
+	    public ClinicalOrder toDomain(ClinicalOrderEntity entity) {
+	        if (entity == null) return null;
 
-        // Mapeo de relaciones
-        if (order.getPatientName() != null) {
-            entity.setPatient(PatientMapper.toEntity(order.getPatientName()));
-        }
-        if (order.getDoctorName() != null) {
-            entity.setDoctor(UserMapper.toEntity(order.getDoctorName()));
-        }
+	        ClinicalOrder clinicalOrder = new ClinicalOrder();
+	        clinicalOrder.setOrderId(entity.getId());
+	        clinicalOrder.setMedications(entity.getMedications());
+	        clinicalOrder.setProcedure(entity.getProcedure());
+	        clinicalOrder.setDiagnosticAid(entity.getDiagnosticAid());
+	        clinicalOrder.setPatient(PatientMapper.toDomain(entity.getPatient()));
 
-        return entity;
-    }
-
-    // ===== Entidad → Dominio =====
-    public static ClinicalOrder toDomain(ClinicalOrderEntity entity) {
-        if (entity == null) {
-            return null;
-        }
-
-        ClinicalOrder order = new ClinicalOrder();
-        order.setId(entity.getId());
-        order.setDocument(entity.getDocument());
-        order.setMedicine(entity.getMedicine());
-        order.setDoce(entity.getDoce());
-        order.setDate(entity.getDate());
-
-        // Mapeo de relaciones
-        if (entity.getPatient() != null) {
-            order.setPatientName(PatientMapper.toDomain(entity.getPatient()));
-        }
-        if (entity.getDoctor() != null) {
-            order.setDoctorName(UserMapper.toDomain(entity.getDoctor()));
-        }
-
-        return order;
-    }
+	        return clinicalOrder;
+	    }
 }

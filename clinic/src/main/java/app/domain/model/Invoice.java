@@ -1,86 +1,69 @@
 package app.domain.model;
 
-
+import java.sql.Date;
 
 public class Invoice {
-	private long id;
-	private Patient patientName;
-    private long document;
-    private User doctorName;
-    private String insuranceCompany;
-    private String policyNumber;
-    private String policyValidity;
-    private String policyEndingDate;
-    private boolean medicine;
-    private ClinicalOrder order;
-    private String productName;
-    
-    
-	public long getId() {
-		return id;
+	private long patientDocument;
+	private long policyNumber;
+	private int patientAge;
+        private Employee doctorName;
+        private Patient patientName;
+	private String  insuranceCompanyName;
+	private Date policyValidity;
+	private Date policyEndDate;
+
+    public Employee getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(Employee doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public Patient getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(Patient patientName) {
+        this.patientName = patientName;
+    }
+	
+	
+	public long getPatientDocument() {
+		return patientDocument;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setPatientDocument(long patientDocument) {
+		this.patientDocument = patientDocument;
 	}
-	public Patient getPatientName() {
-		return patientName;
-	}
-	public void setPatientName(Patient patientName) {
-		this.patientName = patientName;
-	}
-	public long getDocument() {
-		return document;
-	}
-	public void setDocument(long document) {
-		this.document = document;
-	}
-	public User getDoctorName() {
-		return doctorName;
-	}
-	public void setDoctorName(User doctorName) {
-		this.doctorName = doctorName;
-	}
-	public String getInsuranceCompany() {
-		return insuranceCompany;
-	}
-	public void setInsuranceCompany(String insuranceCompany) {
-		this.insuranceCompany = insuranceCompany;
-	}
-	public String getPolicyNumber() {
+	public long getPolicyNumber() {
 		return policyNumber;
 	}
-	public void setPolicyNumber(String policyNumber) {
+	public void setPolicyNumber(long policyNumber) {
 		this.policyNumber = policyNumber;
 	}
-	public String getPolicyValidity() {
+	public int getPatientAge() {
+		return patientAge;
+	}
+	public void setPatientAge(int patientAge) {
+		this.patientAge = patientAge;
+	}
+	public String getInsuranceCompanyName() {
+		return insuranceCompanyName;
+	}
+	public void setInsuranceCompanyName(String insuranceCompanyName) {
+		this.insuranceCompanyName = insuranceCompanyName;
+	}
+	public Date getPolicyValidity() {
 		return policyValidity;
 	}
-	public void setPolicyValidity(String policyValidity) {
+	public void setPolicyValidity(Date policyValidity) {
 		this.policyValidity = policyValidity;
 	}
-	public String getPolicyEndingDate() {
-		return policyEndingDate;
+	public Date getPolicyEndDate() {
+		return policyEndDate;
 	}
-	public void setPolicyEndingDate(String policyEndingDate) {
-		this.policyEndingDate = policyEndingDate;
-	}
-	public boolean isMedicine() {
-		return medicine;
-	}
-	public void setMedicine(boolean medicine) {
-		this.medicine = medicine;
-	}
-	public ClinicalOrder getOrder() {
-		return order;
-	}
-	public void setOrder(ClinicalOrder order) {
-		this.order = order;
-	}
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setPolicyEndDate(Date policyEndDate) {
+		this.policyEndDate = policyEndDate;
 	}
     
     

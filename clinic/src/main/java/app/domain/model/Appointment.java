@@ -1,46 +1,40 @@
 package app.domain.model;
 
-
+import java.sql.Date;
 
 public class Appointment {
-	private long id;
-	private long document;
-	private String date;
-	private String time;
-	private String reason;
-
-	public long getId() {
-		return id;
+	private long AppointmentId;
+	private Employee Doctor;
+	private Patient patient;
+	private Date date;
+	
+	public Employee getDoctor() {
+		return Doctor;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setDoctor(Employee doctor) {
+		Doctor = doctor;
 	}
-	public long getDocument() {
-		return document;
+	public Patient getPatient() {
+		return patient;
 	}
-	public void setDocument(long document) {
-		this.document = document;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
-	public String getDate() {
+	public long getAppointmentId() {
+		return AppointmentId;
+	}
+	public void setAppointmentId(long appointmentId) {
+		AppointmentId = appointmentId;
+	}
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getTime() {
-		return time;
+	public Date getDateTime() {
+		return date;
 	}
-	public void setTime(String time) {
-		this.time = time;
-	}
-	public String getReason() {
-		return reason;
-	}
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-	    
-	
 	
 
 }

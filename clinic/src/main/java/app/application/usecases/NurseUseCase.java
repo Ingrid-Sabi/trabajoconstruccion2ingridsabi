@@ -3,34 +3,37 @@ package app.application.usecases;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import org.springframework.stereotype.Service;
 
 import app.domain.model.ClinicalOrder;
 import app.domain.model.Patient;
-import app.domain.services.RegisterVisit;
-import app.domain.services.SearchClinicalOrderByPatient;
-import app.domain.services.SearchPatientByDocument;
+import app.domain.model.RegisterVisit;
+import app.domain.services.RegisterVisitService;
 
-@Component
+import app.domain.services.SearchPatientService;
+import app.domain.services.ShearchClinicalOrderService;
+
+@Service
 public class NurseUseCase {
 	
 	@Autowired
-	private SearchClinicalOrderByPatient searchClinicalOrderByPatient;
+	private RegisterVisitService registerVisitService;
 	@Autowired
-	private SearchPatientByDocument searchPatientByDocument;
+	private SearchPatientService searchPatientService;
 	@Autowired
-	private RegisterVisit registerVisit;
-
-    public List<ClinicalOrder> searchClinicalOrder(Patient patient) throws Exception{
-		return searchClinicalOrderByPatient.search(patient);
+	private ShearchClinicalOrderService shearchClinicalOrderService;
+	
+	public void registerVisit(RegisterVisit registerVisit) throws Exception {		
+		registerVisitService.registerVisit(registerVisit);	
 	}
-
-    public void searchPatient(Patient patient) throws Exception{
-        searchPatientByDocument.search(patient);
-    }
-
-    public void registerVisit(Patient patient) throws Exception{
-        registerVisit.registerVisit(patient);
-    }
+	
+	public List<Patient> searchPatient(Patient patient) throws Exception{
+		return searchPatientService.search(patient);
+	}
+	
+	public List<ClinicalOrder> searchOrder(ClinicalOrder clinicalorder) throws Exception{
+		return shearchClinicalOrderService.search(clinicalorder);
+	}
 
 }

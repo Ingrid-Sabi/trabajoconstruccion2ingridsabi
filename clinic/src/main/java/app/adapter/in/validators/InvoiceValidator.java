@@ -1,5 +1,7 @@
 package app.adapter.in.validators;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 
@@ -7,52 +9,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class InvoiceValidator extends SimpleValidator {
 	
-	public String productNameValidator(String value) throws Exception {
-        return stringValidator("nombre del producto", value);
-    }
-
-    public boolean isMedicineValidator(String value) throws Exception {
-		stringValidator("venta de mediciona", value);
-		return value.equals("si");
+	public long policyNumberValidator(String value) throws Exception {
+		return longValidator("el numero de poliza del paciente", value);
 	}
-
-    public String patientNameValidator(String value) throws Exception{
-        return stringValidator("Nombre del paciente", value);
-    }
-
-    public Long documentValidator(String value) throws Exception{
-        return longValidator("Documento del paciente",value);
-    }
-    
-    public String doctorNameValidator(String value) throws Exception{
-        return stringValidator("Nombre del doctor", value);
-    }
-
-    public String insuranceCompanyValidator(String value) throws Exception{
-        return stringValidator("Nombre de la compañia de seguros", value);
-    }
-
-    public String policyNumberValidator(String value) throws Exception{
-        return stringValidator("Numero de la poliza", value);
-    }
-
-    public String policyValidityValidator(String value) throws Exception{
-        return stringValidator("Vigencia de la poliza", value);
-    }
-
-    public String policyEndingDateValidator(String value) throws Exception{
-        return stringValidator("Fecha de vencimiento de la poliza", value);
-    }
-
-    public String orderValidator(String value) throws Exception{
-        return stringValidator("Orden medica", value);
-    }
-
-    public String idvalidator(String value) throws Exception{
-        return stringValidator("Id de la orden clinica", value);
-    }
-
-    public long orderIdValidator(String value) throws Exception {
-		return longValidator("id de la orden", value);
+	
+	public int patientAgeValidator(String value) throws Exception {
+		return integrerValidator("La edad del paciente paciente", value);
+	}
+	
+	public String insuranceCompanyNameValidator(String value) throws Exception {
+		return stringValidator("el nombre de la compañia de seguros del paciente", value);
+	}
+	
+	public Date policyValidityValidator(String value) throws Exception {
+		stringValidator("La validacion de la poliza del paciente", value);
+		return Date.valueOf(value);
+	}
+	
+	public Date policyEndDateValidator(String value) throws Exception {
+		stringValidator("la fecha de finalizacion de la poliza del paciente", value);
+		return Date.valueOf(value);
 	}
 }

@@ -1,24 +1,27 @@
 package app.domain.model;
 
 public class EmergencyContact {
-	private String PatientDocument;
 	private String name;
-	private long phone;
+	private String lastName;
+	private String phoneNumber;
 	
-
-	public Object getPatientDocument() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getName() {
+		return name;
 	}
-
-	public Patient getName() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public Object getPhone() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getLastName() {
+		return lastName;
 	}
-
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
 }

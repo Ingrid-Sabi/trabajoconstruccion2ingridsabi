@@ -1,8 +1,16 @@
 package app.infrastructure.persistence.entities;
 
+import java.time.LocalDate;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "invoices")
@@ -12,102 +20,55 @@ public class InvoiceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long document;
+    @Column(nullable = false, unique = true)
+    private Long patientDocument;
 
-    @ManyToOne
+    @Column(nullable = false, unique = true)
+    private Long policyNumber;
+
+    private int patientAge;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id")
+    private EmployeeEntity doctorName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private PatientEntity patientName;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private UserEntity doctorName;
+    @Column(length = 100)
+    private String insuranceCompanyName;
 
-    private String insuranceCompany;
-    private String policyNumber;
-    private String policyValidity;
-    private String policyEndingDate;
-    private boolean medicine;
-    private String productName;
+    private LocalDate policyValidity;
 
-    @OneToOne
-    @JoinColumn(name = "order_id")
-    private ClinicalOrderEntity order;
+    private LocalDate policyEndDate;
 
-    // --- Getters y Setters ---
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // === Getters y Setters ===
 
-    public Long getDocument() {
-        return document;
-    }
-    public void setDocument(Long document) {
-        this.document = document;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public PatientEntity getPatientName() {
-        return patientName;
-    }
-    public void setPatientName(PatientEntity patientName) {
-        this.patientName = patientName;
-    }
+    public Long getPatientDocument() { return patientDocument; }
+    public void setPatientDocument(Long patientDocument) { this.patientDocument = patientDocument; }
 
-    public UserEntity getDoctorName() {
-        return doctorName;
-    }
-    public void setDoctorName(UserEntity doctorName) {
-        this.doctorName = doctorName;
-    }
+    public Long getPolicyNumber() { return policyNumber; }
+    public void setPolicyNumber(Long policyNumber) { this.policyNumber = policyNumber; }
 
-    public String getInsuranceCompany() {
-        return insuranceCompany;
-    }
-    public void setInsuranceCompany(String insuranceCompany) {
-        this.insuranceCompany = insuranceCompany;
-    }
+    public int getPatientAge() { return patientAge; }
+    public void setPatientAge(int patientAge) { this.patientAge = patientAge; }
 
-    public String getPolicyNumber() {
-        return policyNumber;
-    }
-    public void setPolicyNumber(String policyNumber) {
-        this.policyNumber = policyNumber;
-    }
+    public EmployeeEntity getDoctorName() { return doctorName; }
+    public void setDoctorName(EmployeeEntity doctorName) { this.doctorName = doctorName; }
 
-    public String getPolicyValidity() {
-        return policyValidity;
-    }
-    public void setPolicyValidity(String policyValidity) {
-        this.policyValidity = policyValidity;
-    }
+    public PatientEntity getPatientName() { return patientName; }
+    public void setPatientName(PatientEntity patientName) { this.patientName = patientName; }
 
-    public String getPolicyEndingDate() {
-        return policyEndingDate;
-    }
-    public void setPolicyEndingDate(String policyEndingDate) {
-        this.policyEndingDate = policyEndingDate;
-    }
+    public String getInsuranceCompanyName() { return insuranceCompanyName; }
+    public void setInsuranceCompanyName(String insuranceCompanyName) { this.insuranceCompanyName = insuranceCompanyName; }
 
-    public boolean isMedicine() {
-        return medicine;
-    }
-    public void setMedicine(boolean medicine) {
-        this.medicine = medicine;
-    }
+    public LocalDate getPolicyValidity() { return policyValidity; }
+    public void setPolicyValidity(LocalDate policyValidity) { this.policyValidity = policyValidity; }
 
-    public ClinicalOrderEntity getOrder() {
-        return order;
-    }
-    public void setOrder(ClinicalOrderEntity order) {
-        this.order = order;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+    public LocalDate getPolicyEndDate() { return policyEndDate; }
+    public void setPolicyEndDate(LocalDate policyEndDate) { this.policyEndDate = policyEndDate; }
 }

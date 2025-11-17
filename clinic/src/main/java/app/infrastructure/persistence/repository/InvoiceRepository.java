@@ -7,7 +7,7 @@ import app.infrastructure.persistence.entities.InvoiceEntity;
 
 @Repository
 public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Long> {
-
+	InvoiceEntity findByPatientDocument(Long patientDocument);
 }
 
 

@@ -3,41 +3,44 @@ package app.application.usecases;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import org.springframework.stereotype.Service;
 
 import app.domain.model.ClinicalOrder;
 import app.domain.model.ClinicalRecord;
+
 import app.domain.model.Patient;
-import app.domain.services.CreateClinicalRecord;
-import app.domain.services.SearchClinicalRecordByPatient;
-import app.domain.services.UpdateClinicalRecord;
 
-@Component
+import app.domain.services.ClinicalOrderService;
+import app.domain.services.ClinicalRecordService;
+import app.domain.services.SearchClinicalRecordService;
+
+
+@Service
 public class DoctorUseCase {
+	@Autowired
+	private ClinicalRecordService clinicalRecordService;
+	@Autowired
+	private SearchClinicalRecordService searchMedicalRecordService;
+	@Autowired
+	private ClinicalOrderService orderService;
 	
-	@Autowired
-	private CreateClinicalRecord createClinicalRecord;
-	@Autowired
-	private UpdateClinicalRecord updateClinicalRecord;
-	@Autowired
-	private app.domain.services.CreateClinicalOrder createClinicalOrder;
-	@Autowired
-	private SearchClinicalRecordByPatient searchClinicalRecord;
-    
-    public List<ClinicalRecord> searchRecord(Patient patient) throws Exception{
-		return searchClinicalRecord.search(patient);
+	public void createMedicalRecord(ClinicalRecord medicalRecord) throws Exception {
+		
+		clinicalRecordService.create(medicalRecord);		
 	}
-
-    public void createClinicalRecord(ClinicalRecord clinicalRecord) throws Exception{
-        createClinicalRecord.create(clinicalRecord);
+	
+    public void updateMedicalRecord(ClinicalRecord medicalRecord) throws Exception {
+    	
+    	clinicalRecordService.update(medicalRecord);
     }
-
-    public void updateClinicalRecord(ClinicalRecord clinicalRecord) throws Exception{
-        updateClinicalRecord.update(clinicalRecord);
-    }
-
-    public void createClinicalOrder(ClinicalOrder clinicalOrder) throws Exception{
-        createClinicalOrder.create(clinicalOrder);
-    }
-
+    
+	public List<ClinicalRecord> searchMedicalRecord(Patient patient) throws Exception{
+		return searchMedicalRecordService.search(patient);
+	}
+	
+	public void createOrder(ClinicalOrder order) throws Exception {
+		
+		orderService.createOrder(order);		
+	}
 }

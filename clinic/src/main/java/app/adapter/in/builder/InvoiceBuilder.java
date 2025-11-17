@@ -3,9 +3,11 @@ package app.adapter.in.builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.adapter.in.validators.EmployeeValidator;
 import app.adapter.in.validators.InvoiceValidator;
-
+import app.adapter.in.validators.PatientValidator;
 import app.domain.model.ClinicalOrder;
+import app.domain.model.Employee;
 import app.domain.model.Invoice;
 import app.domain.model.Patient;
 import app.domain.model.User;
@@ -14,29 +16,31 @@ import app.domain.model.User;
 @Component
 public class InvoiceBuilder {
 	
-	@Autowired
-	private InvoiceValidator invoiceValidator;
-
-	
-	    public Invoice build(String document, String patientName, String doctorName, String insuranceCompany, String policyNumber, String policyValidity, String policyEndingDate, String medicine, String productName, String order) throws Exception{
-	        Invoice invoice = new Invoice();
-	        User name = new User();
+	  @Autowired
+	    private InvoiceValidator invoiceValidator;
+	    @Autowired
+	    private EmployeeValidator employeeValidator;
+	    @Autowired
+	    private PatientValidator patientValidator;
+	    
+	    public Invoice build(String namePatient, String doctorName, String patientDocument,String doctorDocument, String patientAge, String policyNumber, String insuranceCompanyName, String policyValidity, String policyEndDate) throws Exception {
+	    	Invoice billing = new Invoice();
+	        Employee doctor = new Employee();
 	        Patient patient = new Patient();
-	        invoice.setDocument(invoiceValidator.documentValidator(document));
-	        patient.setPatientName(invoiceValidator.patientNameValidator(patientName));
-	        name.setName(invoiceValidator.doctorNameValidator(doctorName));
-	        invoice.setInsuranceCompany(invoiceValidator.insuranceCompanyValidator(insuranceCompany));
-	        invoice.setPolicyNumber(invoiceValidator.policyNumberValidator(policyNumber));
-	        invoice.setPolicyValidity(invoiceValidator.policyValidityValidator(policyValidity));
-	        invoice.setPolicyEndingDate(invoiceValidator.policyEndingDateValidator(policyEndingDate));
-	        invoice.setProductName(invoiceValidator.productNameValidator(productName));
-	        if (invoice.isMedicine()) {
-				ClinicalOrder clinicalOrder = new ClinicalOrder();
-				clinicalOrder.setId(invoiceValidator.orderIdValidator(order));
-				invoice.setOrder(clinicalOrder);
-			}
+	        doctor.setFullName(employeeValidator.fullNameValidator(doctorName));
+	        doctor.setDocument(employeeValidator.documentValidator(doctorDocument));
+	        patient.setDocument(patientValidator.documentValidator(patientDocument));
+	        billing.setPatientDocument(patient.getDocument());
+	        patient.setFullName(patientValidator.fullNameValidator(namePatient));
+	        billing.setDoctorName(doctor);
+	        billing.setPatientName(patient);
+	        billing.setInsuranceCompanyName(invoiceValidator.insuranceCompanyNameValidator(insuranceCompanyName));
+	        billing.setPatientAge(invoiceValidator.patientAgeValidator(patientAge));
+	        billing.setPolicyNumber(invoiceValidator.policyNumberValidator(policyNumber));
+	        billing.setPolicyValidity(invoiceValidator.policyValidityValidator(policyValidity));
+	        billing.setPolicyEndDate(invoiceValidator.policyEndDateValidator(policyEndDate)); 
 
-	        return invoice;      
+	        return billing;
 	    }
 
 }

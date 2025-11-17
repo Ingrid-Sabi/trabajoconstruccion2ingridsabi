@@ -4,123 +4,67 @@ import java.sql.Date;
 
 public class ClinicalRecord {
 	private long id;
-	private long document;
-	private Patient patientName;
-	private User doctorName;
+	private Employee doctor;
+	private long doctorDocument;
+	private String symptomatology;
+	private String reasonConsultation;
+	private String diagnosis;
 	private Date date;
-	private String motive;
-	private String Diagnosis;
-	private String medicine;
-	private String medicalProcedure;
-	private String doce;
-	private ClinicalOrder clinicalOrder; 
-	private String vaccinationRecord;
-	private String allergies;
-	private String proceddureDetail;
-	private String symptoms;
-	private boolean status;
-
-    public long getDocument() {
-        return document;
-    }
-    public void setDocument(long document) {
-        this.document = document;
-    }
-    public Patient getPatientName() {
-        return patientName;
-    }
-    public void setPatientName(Patient patientName) {
-        this.patientName = patientName;
-    }
-    public User getDoctorName() {
-        return doctorName;
-    }
-    public void setDoctorName(User doctorName) {
-        this.doctorName = doctorName;
-    }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
-    public String getMotive() {
-        return motive;
-    }
-    public void setMotive(String motive) {
-        this.motive = motive;
-    }
-    public String getDiagnosis() {
-        return Diagnosis;
-    }
-    public void setDiagnosis(String diagnosis) {
-        Diagnosis = diagnosis;
-    }
-    public String getMedicine() {
-        return medicine;
-    }
-    public void setMedicine(String medicine) {
-        this.medicine = medicine;
-    }
-    public String getMedicalProcedure() {
-        return medicalProcedure;
-    }
-    public void setMedicalProcedure(String medicalProcedure) {
-        this.medicalProcedure = medicalProcedure;
-    }
-    public String getDoce() {
-        return doce;
-    }
-    public void setDoce(String doce) {
-        this.doce = doce;
-    }
-    public ClinicalOrder getClinicalOrder() {
-        return clinicalOrder;
-    }
-    public void setClinicalOrder(ClinicalOrder clinicalOrder) {
-        this.clinicalOrder = clinicalOrder;
-    }
-    public String getVaccinationRecord() {
-        return vaccinationRecord;
-    }
-    public void setVaccinationRecord(String vaccinationRecord) {
-        this.vaccinationRecord = vaccinationRecord;
-    }
-    public String getAllergies() {
-        return allergies;
-    }
-    public void setAllergies(String allergies) {
-        this.allergies = allergies;
-    }
-    public String getProceddureDetail() {
-        return proceddureDetail;
-    }
-    public void setProceddureDetail(String proceddureDetail) {
-        this.proceddureDetail = proceddureDetail;
-    }
-    public String getSymptoms() {
-        return symptoms;
-    }
-    public void setSymptoms(String symptoms) {
-        this.symptoms = symptoms;
-    }
-    public boolean isStatus() {
-        return status;
-    }
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-    public static ClinicalOrder getclinicalOrder() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getclinicalOrder'");
-    }
+	private Patient patient;
+	
+	public long getDoctorDocument() {
+		return doctorDocument;
+	}
+	public void setDoctorDocument(long doctorDocument) {
+		this.doctorDocument = doctorDocument;
+	}
+	public String getSymptomatology() {
+		return symptomatology;
+	}
+	public void setSymptomatology(String symptomatology) {
+		this.symptomatology = symptomatology;
+	}
+	public String getReasonConsultation() {
+		return reasonConsultation;
+	}
+	public void setReasonConsultation(String reasonConsultation) {
+		this.reasonConsultation = reasonConsultation;
+	}
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Employee getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(Employee doctor) {
+		this.doctor = doctor;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-    
+    public void save(ClinicalRecord clinicalRecord) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+	
 	
 
 }

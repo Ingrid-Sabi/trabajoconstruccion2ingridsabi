@@ -4,16 +4,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClinicalOrderValidator extends SimpleValidator {
 	
-	 public String medicineValidator (String value) throws Exception {
-	        return stringValidator("medicina de la orden", value);
-	    }
-
-	    public String doceValidator (String value) throws Exception {
-	        return stringValidator("dosis de la medicina de la orden", value);
-	    }
-
-	    public long idValidator (String value) throws Exception {
-	        return longValidator("id de la orden clinica", value);
-	    }
-
+	public String DiagnosticAidValidator (String value) throws Exception {
+        return stringValidator("Ayuda diagnostica de la orden", value);
+}
+    
+    public String ProcedureValidator(String value) throws Exception {
+        return stringValidator("El procedimiento de la orden", value);
+            }
+    public String MedicationsValidator(String value) throws Exception {
+        return stringValidator("Medicina de la orden", value);
+            }
+    public long patientIdValidator(String value) throws Exception{
+    	return longValidator("la identificacion del paciente", value);
+    }
 }

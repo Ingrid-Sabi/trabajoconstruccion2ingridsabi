@@ -1,10 +1,9 @@
 package app.domain.model.enums;
 
 public enum Role {
-	ADMIN,
-	DOCTORS,
-	NURSE,
+	ADMINISTRATOR,
 	HUMANRESOURCES,
-	SUPPORT
-
+	INFORMATIONSUPPORT,
+	NURSES,
+	DOCTORS,
 }

@@ -1,14 +1,8 @@
 package app.infrastructure.persistence.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.time.LocalDate;
+import app.domain.model.enums.Gender;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "patients")
@@ -22,86 +16,60 @@ public class PatientEntity {
     private Long document;
 
     @Column(nullable = false, length = 100)
-    private String patientName;
+    private String fullName;
 
-    @Column(nullable = false)
-    private Integer age;
+    @Column(length = 15)
+    private Long phoneNumber;
 
-    @Column(length = 20)
-    private String gender;
-
-    @Column(length = 200)
     private String address;
 
-    @Column(length = 20)
-    private String phoneNumber;
-
-    @Column(length = 100)
+    @Column(unique = true)
     private String email;
 
-    // ===== Getters y Setters =====
-    public Long getId() {
-        return id;
-    }
+    private LocalDate birthdate;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-    public Long getDocument() {
-        return document;
-    }
+    private double weight;
 
-    public void setDocument(Long document) {
-        this.document = document;
-    }
+    private double size;
 
-    public String getPatientName() {
-        return patientName;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id")
+    private EmployeeEntity doctor;
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
+    // === Getters y Setters ===
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Integer getAge() {
-        return age;
-    }
+    public Long getDocument() { return document; }
+    public void setDocument(Long document) { this.document = document; }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
-    public String getGender() {
-        return gender;
-    }
+    public Long getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(Long phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 
-    public String getAddress() {
-        return address;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public LocalDate getBirthdate() { return birthdate; }
+    public void setBirthdate(LocalDate birthdate) { this.birthdate = birthdate; }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    public Gender getGender() { return gender; }
+    public void setGender(Gender gender) { this.gender = gender; }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public double getWeight() { return weight; }
+    public void setWeight(double weight) { this.weight = weight; }
 
-    public String getEmail() {
-        return email;
-    }
+    public double getSize() { return size; }
+    public void setSize(double size) { this.size = size; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public EmployeeEntity getDoctor() { return doctor; }
+    public void setDoctor(EmployeeEntity doctor) { this.doctor = doctor; }
 }
-

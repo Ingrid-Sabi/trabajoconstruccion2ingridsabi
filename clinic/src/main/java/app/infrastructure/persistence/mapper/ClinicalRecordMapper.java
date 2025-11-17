@@ -2,79 +2,62 @@ package app.infrastructure.persistence.mapper;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import app.domain.model.ClinicalRecord;
 import app.infrastructure.persistence.entities.ClinicalRecordEntity;
 
+@Component
 public class ClinicalRecordMapper {
 
-    // ===== Dominio → Entidad =====
-    public static ClinicalRecordEntity toEntity(ClinicalRecord record) {
-        if (record == null) {
-            return null;
-        }
+	  @Autowired
+	    private final EmployeeMapper employeeMapper;
 
-        ClinicalRecordEntity entity = new ClinicalRecordEntity();
-        entity.setId(record.getId());
-        entity.setDocument(record.getDocument());
-        entity.setDate(record.getDate());
-        entity.setMotive(record.getMotive());
-        entity.setDiagnosis(record.getDiagnosis());
-        entity.setMedicine(record.getMedicine());
-        entity.setMedicalProcedure(record.getMedicalProcedure());
-        entity.setDoce(record.getDoce());
-        entity.setVaccinationRecord(record.getVaccinationRecord());
-        entity.setAllergies(record.getAllergies());
-        entity.setProceddureDetail(record.getProceddureDetail());
-        entity.setSymptoms(record.getSymptoms());
-        entity.setStatus(record.isStatus());
+	    @Autowired
+	    private final PatientMapper patientMapper;
 
-        // Relaciones
-        if (record.getPatientName() != null) {
-            entity.setPatient(PatientMapper.toEntity(record.getPatientName()));
-        }
-        if (record.getDoctorName() != null) {
-            entity.setDoctor(UserMapper.toEntity(record.getDoctorName()));
-        }
-        if (record.getClinicalOrder() != null) {
-            entity.setClinicalOrder(ClinicalOrderMapper.toEntity(record.getClinicalOrder()));
-        }
+	    public ClinicalRecordMapper(EmployeeMapper employeeMapper, PatientMapper patientMapper) {
+	        this.employeeMapper = employeeMapper;
+	        this.patientMapper = patientMapper;
+	    }
 
-        return entity;
-    }
+	    // === Domain → Entity ===
+	    public ClinicalRecordEntity toEntity(ClinicalRecord clinicalRecord) {
+	        if (clinicalRecord == null) return null;
 
-    // ===== Entidad → Dominio =====
-    public static ClinicalRecord toDomain(ClinicalRecordEntity entity) {
-        if (entity == null) {
-            return null;
-        }
+	        ClinicalRecordEntity entity = new ClinicalRecordEntity();
+	        entity.setDoctorDocument(clinicalRecord.getDoctorDocument());
+	        entity.setSymptomatology(clinicalRecord.getSymptomatology());
+	        entity.setReasonConsultation(clinicalRecord.getReasonConsultation());
+	        entity.setDiagnosis(clinicalRecord.getDiagnosis());
 
-        ClinicalRecord record = new ClinicalRecord();
-        record.setId(entity.getId());
-        record.setDocument(entity.getDocument());
-        record.setDate(entity.getDate());
-        record.setMotive(entity.getMotive());
-        record.setDiagnosis(entity.getDiagnosis());
-        record.setMedicine(entity.getMedicine());
-        record.setMedicalProcedure(entity.getMedicalProcedure());
-        record.setDoce(entity.getDoce());
-        record.setVaccinationRecord(entity.getVaccinationRecord());
-        record.setAllergies(entity.getAllergies());
-        record.setProceddureDetail(entity.getProceddureDetail());
-        record.setSymptoms(entity.getSymptoms());
-        record.setStatus(entity.isStatus());
+	        if (clinicalRecord.getDate() != null)
+	            entity.setDate(clinicalRecord.getDate().toLocalDate());
 
-        // Relaciones
-        if (entity.getPatient() != null) {
-            record.setPatientName(PatientMapper.toDomain(entity.getPatient()));
-        }
-        if (entity.getDoctor() != null) {
-            record.setDoctorName(UserMapper.toDomain(entity.getDoctor()));
-        }
-        if (entity.getClinicalOrder() != null) {
-            record.setClinicalOrder(ClinicalOrderMapper.toDomain(entity.getClinicalOrder()));
-        }
+	        entity.setDoctor(employeeMapper.toEntity(clinicalRecord.getDoctor()));
+	        entity.setPatient(patientMapper.toEntity(clinicalRecord.getPatient()));
 
-        return record;
-    }
+	        return entity;
+	    }
+
+	    // === Entity → Domain ===
+	    public ClinicalRecord toDomain(ClinicalRecordEntity entity) {
+	        if (entity == null) return null;
+
+	        ClinicalRecord record = new ClinicalRecord();
+	        record.setDoctorDocument(entity.getDoctorDocument());
+	        record.setSymptomatology(entity.getSymptomatology());
+	        record.setReasonConsultation(entity.getReasonConsultation());
+	        record.setDiagnosis(entity.getDiagnosis());
+
+	        if (entity.getDate() != null)
+	            record.setDate(java.sql.Date.valueOf(entity.getDate()));
+
+	        record.setDoctor(employeeMapper.toDomain(entity.getDoctor()));
+	        record.setPatient(patientMapper.toDomain(entity.getPatient()));
+
+	        return record;
+	    }
 }
 

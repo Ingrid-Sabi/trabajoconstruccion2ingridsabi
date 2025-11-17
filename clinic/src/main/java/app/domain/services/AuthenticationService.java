@@ -1,42 +1,47 @@
 package app.domain.services;
 
-import app.domain.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import app.application.exceptions.BusinessException;
+import app.domain.model.Employee;
+
 import app.domain.model.auth.AuthCredentials;
 import app.domain.model.auth.TokenResponse;
 import app.domain.ports.AuthenticationPort;
-import app.domain.ports.UserPort;
-import app.application.exceptions.BusinessException;
-import org.springframework.beans.factory.annotation.Autowired;
+import app.domain.ports.EmployeePort;
 
-import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationService {
-    
+	  
     @Autowired
     private AuthenticationPort authenticationPort;
     
     @Autowired
-    private UserPort userPort;
+    private EmployeePort employeePort;
     
 
     public TokenResponse authenticate(AuthCredentials credentials) throws Exception{
-        User user = this.getUserByUsername(credentials.getUsername());
-        this.validatePassword(credentials.getPassword(), user.getPassword());
-        return authenticationPort.authenticate(credentials, String.valueOf(user.getRole()));
+        Employee employee= this.getUserByUsername(credentials.getUsername());
+        this.validatePassword(credentials.getPassword(), employee.getPassword());
+        return authenticationPort.authenticate(credentials, String.valueOf(employee.getRole()));
     }
 
-    private User getUserByUsername(String username)  throws Exception{
-    	User user = new User();
-    	user.setUserName(username);
-        user = userPort.findByUserName(user);
-        if (user == null) {
+    private Employee getUserByUsername(String username)  throws Exception{
+    	Employee employee= new Employee();
+    	employee.setUserName(username);
+        employee = employeePort.findByUserName(employee);
+        if (employee == null) {
             throw new BusinessException("Usuario no encontrado");
         }
-        return user;
+        return employee;
     }
 
     private void validatePassword(String inputPassword, String storedPassword) throws Exception {
+        if(inputPassword == null || inputPassword.isEmpty()) {
+            throw new BusinessException("La contraseña no puede estar vacía");
+        }
         if (!inputPassword.equals(storedPassword)) {
             throw new BusinessException("Contraseña incorrecta");
         }

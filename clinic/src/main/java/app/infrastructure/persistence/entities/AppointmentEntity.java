@@ -1,6 +1,6 @@
 package app.infrastructure.persistence.entities;
 
-
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -10,57 +10,53 @@ public class AppointmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+    private Long appointmentId;
+
+    // Relación con el médico (Employee)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private EmployeeEntity doctor;
+
+    // Relación con el paciente
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id", nullable = false)
+    private PatientEntity patient;
+
+    // Fecha de la cita
     @Column(nullable = false)
-    private Long document;
+    private LocalDate date;
 
-    
+    // ====== Getters y Setters ======
 
-    @Column(nullable = false)
-    private String date;
-
-    @Column(nullable = false)
-    private String time;
-
-    @Column(nullable = false)
-    private String reason;
-
-    // --- Getters y Setters ---
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
+    public Long getAppointmentId() {
+        return appointmentId;
     }
 
-    public Long getDocument() {
-        return document;
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
-    public void setDocument(Long document) {
-        this.document = document;
+    public EmployeeEntity getDoctor() {
+        return doctor;
     }
 
-    public String getDate() {
+    public void setDoctor(EmployeeEntity doctor) {
+        this.doctor = doctor;
+    }
+
+    public PatientEntity getPatient() {
+        return patient;
+    }
+
+    public void setPatient(PatientEntity patient) {
+        this.patient = patient;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(String date) {
+
+    public void setDate(LocalDate date) {
         this.date = date;
     }
-
-    public String getTime() {
-        return time;
-    }
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
 }
-
